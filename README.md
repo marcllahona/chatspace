@@ -1,6 +1,6 @@
 ![Chatspace](.//public/favicon.svg) 
 
-## Chatt
+## Chatspace
 
 Real-Time Video Chat App written with ReactJS and GraphQL served with a NodeJS API 
 
