@@ -24,7 +24,7 @@
     "react-scripts": "3.0.0",
     "styled-components": "^4.2.0",
     "subscriptions-transport-ws": "^0.9.16",
-    "twilio-video": "^2.0.0-beta9"
+    "twilio-video": "^1.18.0"
   },
   "scripts": {
     "start": "react-scripts start",

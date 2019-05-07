@@ -287,8 +287,8 @@ const ParticipantsList = styled.div`
 
 const ParticipantAnimation = styled.div`
   width: 100%;
-  max-width: 400px;
-  height: 96%;
+  max-width: 640px;
+  height: 100%;
   max-height: 400px;
   margin: 1%;
   transform: rotate3d(1, 1, 1, 0deg) scale(1);
@@ -318,6 +318,7 @@ const ParticipantContainer = styled.div`
 `;
 
 const ParticipantMedia = styled.div`
+  position: relative;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 3px 6px;
   width: 100%;
   height: 100%;
@@ -325,6 +326,13 @@ const ParticipantMedia = styled.div`
   border-radius: 2px;
   transition: border 0.1s ease 0s;
   background: transparent;
+  video {
+    transform: scaleX(-1);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 `;
 
 const ParticipantMediaDisabled = styled.div`

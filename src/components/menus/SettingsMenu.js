@@ -4,7 +4,7 @@ import * as S from '../../styles';
 import Icon from '../icons/Icon';
 
 function SettingsMenu(props) {
-  const { onAction, onCancel } = props;
+  const { onCancel } = props;
   return (
     <>
       <S.MenuHeader>
@@ -22,9 +22,7 @@ function SettingsMenu(props) {
 }
 
 SettingsMenu.propTypes = {
-  link: PropTypes.string.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onAction: PropTypes.func.isRequired
+  onCancel: PropTypes.func.isRequired
 };
 
 export default SettingsMenu;

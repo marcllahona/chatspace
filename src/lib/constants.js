@@ -10,3 +10,18 @@ export const FETCH_POLICY = {
   // Does not read, nor does it write to the cache with the response.
   NO_CACHE: 'no-cache'
 };
+
+export const MEDIA_FLAGS = {
+  PARTICIPANT_CONNECTED: 'participantConnected',
+  PARTICIPANT_DISCONNECTED: 'participantDisconnected',
+  TRACK_SUBSCRIBED: 'trackSubscribed',
+  TRACK_UNSUBSCRIBED: 'trackUnsubscribed',
+  DISCONNECTED: 'disconnected',
+  VIDEO: 'video',
+  AUDIO: 'audio',
+  LOCAL_VIDEO: 'showLocalVideo',
+  LOCAL_AUDIO: 'showLocalAudio',
+  LOCAL_MEDIA: 'local-media',
+  REMOTE_MEDIA: 'remote-media',
+  PREVIEW_MEDIA: 'preview-media'
+};

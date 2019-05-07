@@ -6,6 +6,12 @@ const MEETING_QUERY = gql`
       __typename
       id
       name
+      access
+      participants {
+        id
+        firstName
+        lastName
+      }
     }
   }
 `;
