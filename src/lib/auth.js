@@ -96,10 +96,10 @@ const auth = {
     return auth.set(value, userInfo, isLocalStorage);
   },
 
-  async verifyToken() {
+  verifyToken() {
     const token = auth.getToken();
     if (token) {
-      return await jwt.verify(token, process.env.REACT_APP_TOKEN_SECRET);
+      return jwt.verify(token, process.env.REACT_APP_TOKEN_SECRET);
     }
     return null;
   }
