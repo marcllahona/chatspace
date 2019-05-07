@@ -2,7 +2,7 @@
 
 ## Chatspace
 
-Real-Time Video Chat App written with ReactJS and GraphQL served with a NodeJS API 
+Real-Time Video Chat App written with ReactJS and GraphQL served with an [API](https://github.com/marcllahona/chatspace_api) written in NodeJS
 
 ## Features
 
@@ -13,7 +13,6 @@ Real-Time Video Chat App written with ReactJS and GraphQL served with a NodeJS A
 
 ## Technologies
 
-- Prisma
 - GraphQL
 - React Router
 - React Apollo
