@@ -12,6 +12,7 @@ import { createUploadLink } from 'apollo-upload-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { isProduction } from './lib/config';
 import auth from './lib/auth';
+import Loader from './components/Loader';
 
 function Apollo({ children }) {
   const [client, setClient] = useState(null);
@@ -59,7 +60,6 @@ function Apollo({ children }) {
         return kind === 'OperationDefinition' && operation === 'subscription';
       },
       wsLink,
-      // authLink.concat(httpLink),
       authLink.concat(uploadLink)
     );
 
@@ -101,7 +101,7 @@ function Apollo({ children }) {
   return (
     <>
       {!loaded ? (
-        <p>Loading</p>
+        <Loader />
       ) : (
         <ApolloProvider client={client}>{children}</ApolloProvider>
       )}
