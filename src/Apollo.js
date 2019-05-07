@@ -19,13 +19,14 @@ function Apollo({ children }) {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     const authToken = auth.getToken();
-    let API_URL = isProduction
-      ? process.env.REACT_APP_API_URL
-      : process.env.REACT_APP_DEV_API_URL;
-
     const uploadLink = new createUploadLink({
-      uri: API_URL
+      uri: process.env.REACT_APP_API_URL
     });
+
+    let API_URL = process.env.REACT_APP_API_URL;
+    if (navigator.userAgent === 'ReactSnap') {
+      API_URL = process.env.REACT_APP_API_URL_PRERENDER;
+    }
 
     const wsClient = new SubscriptionClient(API_URL.replace(/^http/, 'ws'), {
       timeout: 30000,

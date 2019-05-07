@@ -23,7 +23,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "styled-components": "^4.2.0",
-    "subscriptions-transport-ws": "^0.9.16"
+    "subscriptions-transport-ws": "^0.9.16",
+    "twilio-video": "^2.0.0-beta9"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
-    "babel-loader": "^8.0.5"
+    "babel-loader": "^8.0.5",
+    "react-snap": "^1.23.0"
   }
 }
