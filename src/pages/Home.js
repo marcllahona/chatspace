@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { Mutation } from 'react-apollo';
 import User from '../graphql/types/User';
 import TextField from '../components/inputs/TextField';
 import { invalidInputString } from '../lib/utils';
+import START_MEETING_MUTATION from '../graphql/mutation/startMeeting';
+import START_MEETING_WITH_NAME_MUTATION from '../graphql/mutation/startMeetingWithName';
 import * as S from '../styles';
 
 function Home(props) {
-  const [id, setID] = useState('');
+  const [name, setName] = useState('');
 
-  function startMeetingWithCode(code) {
-    props.history.push(`/meeting/${code}`);
-  }
-
-  function startMeetingWithoutCode() {
-    props.history.push(`/meeting/${1234}`);
+  function startMeeting(name) {
+    props.history.push(`/meeting/${name}`);
   }
 
   return (
@@ -31,30 +30,70 @@ function Home(props) {
                 <S.Instructions>
                   Start a meeting with a random code
                 </S.Instructions>
-                <S.Button onClick={startMeetingWithoutCode}>
-                  Start a new meeting
-                </S.Button>
+                <Mutation
+                  mutation={START_MEETING_MUTATION}
+                  variables={{ userID: me.id }}
+                >
+                  {(startMeeting, { data, loading, error }) => {
+                    if (loading) return <p>Loading</p>;
+                    if (error) return <p>Error</p>;
+                    if (data) {
+                      console.log(data);
+                      return (
+                        <Redirect to={`/meeting/${data.startMeeting.name}`} />
+                      );
+                    }
+                    return (
+                      <S.Button
+                        type="button"
+                        onClick={async e => {
+                          e.preventDefault();
+                          await startMeeting();
+                        }}
+                      >
+                        Start a new meeting
+                      </S.Button>
+                    );
+                  }}
+                </Mutation>
               </S.Action>
               <S.Action>
                 <S.Instructions>or use your own meeting code</S.Instructions>
-                <S.Form
-                  method={'post'}
-                  onSubmit={async e => {
-                    e.preventDefault();
-                    startMeetingWithCode(id);
-                  }}
+                <Mutation
+                  mutation={START_MEETING_WITH_NAME_MUTATION}
+                  variables={{ userID: me.id, name: name }}
                 >
-                  <TextField
-                    label="ID"
-                    name="id"
-                    value={id}
-                    placeholder="Enter meeting ID"
-                    onChange={e => setID(e.target.value)}
-                  />
-                  <S.FormButton disabled={invalidInputString(id)}>
-                    Use meeting code
-                  </S.FormButton>
-                </S.Form>
+                  {(startMeetingWithName, { data, loading, error }) => {
+                    if (loading) return <p>Loading</p>;
+                    if (error) return <p>Error</p>;
+                    if (data)
+                      return (
+                        <Redirect
+                          to={`/meeting/${data.startMeetingWithName.name}`}
+                        />
+                      );
+                    return (
+                      <S.Form
+                        method={'post'}
+                        onSubmit={async e => {
+                          e.preventDefault();
+                          await startMeetingWithName();
+                        }}
+                      >
+                        <TextField
+                          label="Name"
+                          name="name"
+                          value={name}
+                          placeholder="Enter meeting name"
+                          onChange={e => setName(e.target.value)}
+                        />
+                        <S.FormButton disabled={invalidInputString(name)}>
+                          Use meeting code
+                        </S.FormButton>
+                      </S.Form>
+                    );
+                  }}
+                </Mutation>
               </S.Action>
             </S.Container>
           );
