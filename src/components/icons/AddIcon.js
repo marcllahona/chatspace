@@ -7,7 +7,6 @@ function AddIcon(props) {
       width="25"
       height="25"
       viewBox="0 0 25 25"
-      style={{ height: '100%', width: '100%', maxHeight: 'inherit' }}
     >
       <path
         id="add-icon"

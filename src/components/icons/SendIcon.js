@@ -7,7 +7,6 @@ function SendIcon() {
       width="20"
       height="20"
       viewBox="0 0 20 20"
-      style={{ height: '100%', width: '100%', maxHeight: 'inherit' }}
     >
       <g id="send" transform="translate(-2 -2)">
         <path

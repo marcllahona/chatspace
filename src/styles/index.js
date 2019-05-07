@@ -303,7 +303,7 @@ const ParticipantAnimationMini = styled.div`
   left: 20px;
   height: 120px;
   width: 120px;
-  z-index: 2;
+  z-index: 1;
   margin: 0px;
   transform: rotate3d(1, 1, 1, 0deg) scale(1);
   opacity: 1;
@@ -344,7 +344,7 @@ const ActionsBar = styled.div`
   height: 100px;
   position: fixed;
   bottom: 0px;
-  z-index: 2;
+  z-index: 1;
 `;
 
 const NavigationBar = styled.div`
@@ -401,7 +401,7 @@ const ChatMessageList = styled.div`
   -webkit-box-pack: end;
   justify-content: end;
   overflow-y: auto;
-  padding: 20px;
+  padding: 0 20px;
 `;
 
 const ChatFooter = styled.div`
@@ -534,6 +534,7 @@ const MenuTitle = styled.h1`
 const MenuBody = styled.div`
   display: grid;
   grid-row-gap: 1.5em;
+  width: 100%;
 `;
 
 const Body = styled.div`
@@ -549,6 +550,7 @@ const Container = styled.div`
   flex-direction: column;
   max-width: 400px;
   padding: 1em;
+  align-items: center;
 `;
 
 const Title = styled.h1`
@@ -571,14 +573,79 @@ const Form = styled.form`
 `;
 
 const CustomLink = styled(Link)`
-  font-size: 14px;
+  font-size: 16px;
   color: ${props => props.theme.palette.primary};
+  padding: 0.5em 0;
 `;
 
 const Action = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 4em;
+  width: 100%;
+`;
+
+const URL = styled.div`
+  font-size: 14px;
+  font-weight: bold;
+`;
+
+const LoaderContainer = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  left: 50%;
+  top: 50%;
+  background-color: ${props => props.theme.palette.onPrimary};
+  transform: translate(-50%, -50%) !important;
+  z-index: 3000;
+`;
+
+const LoaderBody = styled.div`
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-row-gap: 2em;
+`;
+
+const LoaderText = styled.h2`
+  font-weight: 700;
+  color: ${props => props.theme.palette.secondary};
+  margin: 0;
+  text-align: center;
+`;
+
+const LoaderIcon = styled.div`
+  background-color: ${props => props.theme.palette.onPrimary};
+  border: 20px solid ${props => props.theme.palette.secondary};
+  border-radius: 50%;
+  border-top: 20px solid ${props => props.theme.palette.primary};
+  width: 150px;
+  height: 150px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 export {
@@ -591,6 +658,7 @@ export {
   CustomLink,
   Form,
   Button,
+  URL,
   CircularButton,
   FormButton,
   InputBody,
@@ -622,5 +690,9 @@ export {
   Modal,
   MenuHeader,
   MenuTitle,
-  MenuBody
+  MenuBody,
+  LoaderContainer,
+  LoaderBody,
+  LoaderText,
+  LoaderIcon
 };

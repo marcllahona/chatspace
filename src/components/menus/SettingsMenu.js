@@ -5,10 +5,6 @@ import Icon from '../icons/Icon';
 
 function SettingsMenu(props) {
   const { onAction, onCancel } = props;
-  //state via hooks to know current settings and change without saving!
-  //const useCopyClipboard = useState
-
-  //Function to copy link to clipboard
   return (
     <>
       <S.MenuHeader>

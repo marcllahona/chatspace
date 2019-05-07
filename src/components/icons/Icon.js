@@ -45,7 +45,7 @@ function Icon(props) {
       );
     case 'send':
       return (
-        <S.CircularButton color="primary" onClick={onClick}>
+        <S.CircularButton color="primary" onClick={onClick} type={'button'}>
           <SendIcon {...props} />
         </S.CircularButton>
       );

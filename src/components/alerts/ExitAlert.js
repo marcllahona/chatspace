@@ -12,7 +12,7 @@ function ExitAlert(props) {
         {isOpen && (
           <S.Modal>
             <S.Menu>
-              <ExitMenu onCancel={() => openAlert(false)} />
+              <ExitMenu {...props} onCancel={() => openAlert(false)} />
             </S.Menu>
             <S.Overlay onClick={() => openAlert(false)} />
           </S.Modal>

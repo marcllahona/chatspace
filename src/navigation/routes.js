@@ -25,7 +25,7 @@ const routes = [
     exact: true
   },
   {
-    path: '/meeting/:id?',
+    path: '/meeting/:name?',
     component: Meeting,
     exact: true
   }
