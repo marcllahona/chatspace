@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
+import { Redirect } from 'react-router-dom';
 import TextField from '../components/inputs/TextField';
+import Loader from '../components/Loader';
 import { invalidInputRegistration } from '../lib/utils';
-import LOGIN_MUTATION from '../graphql/mutation/login';
+import REGISTER_MUTATION from '../graphql/mutation/register';
 import ME_QUERY from '../graphql/query/me';
 import { FETCH_POLICY } from '../lib/constants';
 import auth from '../lib/auth';
+import LogoIcon from '../components/icons/LogoIcon';
 import * as S from '../styles';
 
 function Registration(props) {
@@ -28,9 +31,10 @@ function Registration(props) {
   return (
     <S.Body>
       <S.Container>
+        <LogoIcon />
         <S.Title>Register with Chatspace</S.Title>
         <Mutation
-          mutation={LOGIN_MUTATION}
+          mutation={REGISTER_MUTATION}
           variables={{ firstName, lastName, email, password }}
           //We refetch user query to get most current value
           refetchQueries={[{ query: ME_QUERY }]}
@@ -39,18 +43,19 @@ function Registration(props) {
           onError={onError}
           onCompleted={e => onCompleted(e.register)}
         >
-          {(register, { loading }) => {
-            if (loading) return <p>Loading</p>;
+          {(register, { data, loading, error }) => {
+            if (loading) return <Loader />;
+            if (error) return <p>Error</p>;
+            if (data) {
+              auth.setToken(data.token, true);
+              return <Redirect to={`/`} />;
+            }
             return (
               <S.Form
                 method="POST"
                 onSubmit={async e => {
                   e.preventDefault();
                   await register();
-                  setFirstName('');
-                  setLastName('');
-                  setEmail('');
-                  setPassword('');
                 }}
               >
                 <TextField
@@ -89,7 +94,7 @@ function Registration(props) {
                     password
                   ])}
                 >
-                  Login
+                  Register
                 </S.FormButton>
               </S.Form>
             );
