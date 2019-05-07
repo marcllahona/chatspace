@@ -10,6 +10,11 @@ const routes = [
     exact: true
   },
   {
+    path: '/home',
+    component: Home,
+    exact: true
+  },
+  {
     path: '/login',
     component: Login,
     exact: true
