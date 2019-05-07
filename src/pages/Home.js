@@ -22,7 +22,7 @@ function Home(props) {
       <User>
         {({ data, loading, error }) => {
           if (loading) return <p>Loading</p>;
-          if (error) return <Redirect to={'/login'} />;
+          if (error || !data) return <Redirect to={'/login'} />;
           const { me } = data;
           return (
             <S.Container>
