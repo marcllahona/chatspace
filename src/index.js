@@ -4,13 +4,16 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import './styles/index.css';
 import App from './App';
+import Apollo from './Apollo';
 import * as serviceWorker from './serviceWorker';
 import theme from './lib/theme';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <BrowserRouter>
-      <App />
+      <Apollo>
+        <App />
+      </Apollo>
     </BrowserRouter>
   </ThemeProvider>,
   document.getElementById('root')
