@@ -9,12 +9,8 @@ const START_MEETING_WITH_NAME_MUTATION = gql`
       name
       participants {
         id
-      }
-      messages {
-        id
-        author {
-          id
-        }
+        firstName
+        lastName
       }
     }
   }
