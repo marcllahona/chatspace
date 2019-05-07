@@ -37,7 +37,7 @@ function Registration(props) {
           //We do not want to keep cache of email/password from the User
           fetchPolicy={FETCH_POLICY.NO_CACHE}
           onError={onError}
-          onCompleted={e => onCompleted(e.login)}
+          onCompleted={e => onCompleted(e.register)}
         >
           {(register, { loading }) => {
             if (loading) return <p>Loading</p>;
