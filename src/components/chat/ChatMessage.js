@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import * as S from '../styles';
+import * as S from '../../styles';
 
 function ChatMessage(props) {
   const { name, text, isUser } = props;
