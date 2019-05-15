@@ -6,7 +6,7 @@ const AppContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   min-height: 100vh;
-  margin: 0px auto;
+  margin: 0 auto;
 `;
 
 /**
@@ -145,6 +145,21 @@ CircularButton.defaultProps = {
   size: 50
 };
 
+const VisibleButton = styled.button`
+  position: absolute;
+  font-weight: bold;
+  align-self: end;
+  height: 50px;
+  right: 0;
+  background-color: transparent;
+  border-radius: 0 6px 6px 0;
+  border: none;
+  padding: 1em 2em;
+  outline: none;
+  cursor: pointer;
+`;
+
+
 const InputField = styled.input`
   font-size: 14px;
   letter-spacing: 1px;
@@ -205,6 +220,14 @@ InputField.defaultProps = {
   primary: false
 };
 
+const InputFieldContainer = styled.div`
+  position: relative;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+
 const InputLabel = styled.label`
   font-size: 14px;
   line-height: 35px;
@@ -247,19 +270,6 @@ const ActionBarName = styled.p`
   line-height: 10px;
   letter-spacing: 0.5px;
   color: ${props => props.theme.palette.onSecondary};
-`;
-
-const VoiceVisualizer = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  z-index: -1;
-  background: ${props => props.theme.palette.secondary};
-  opacity: 0.3;
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.06, 1.13, 1, 1) 0s;
-  transform: scale(1, 1.1, 1.05, 1.02, 1.08, 1);
 `;
 
 const ParticipantsContainer = styled.div`
@@ -669,12 +679,13 @@ export {
   URL,
   CircularButton,
   FormButton,
+  VisibleButton,
   InputBody,
   InputField,
   InputLabel,
+  InputFieldContainer,
   ActionBar,
   ActionBarName,
-  VoiceVisualizer,
   ParticipantsContainer,
   ParticipantsList,
   ParticipantAnimation,

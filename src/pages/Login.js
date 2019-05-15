@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import { Redirect } from 'react-router-dom';
 import User from '../graphql/types/User';
 import TextField from '../components/inputs/TextField';
+import PasswordField from "../components/inputs/PasswordField";
 import Loader from '../components/Loader';
-import { invalidInputString } from '../lib/utils';
+import LogoIcon from '../components/icons/LogoIcon';
 import LOGIN_MUTATION from '../graphql/mutation/login';
 import ME_QUERY from '../graphql/query/me';
 import { FETCH_POLICY } from '../lib/constants';
 import auth from '../lib/auth';
-import LogoIcon from '../components/icons/LogoIcon';
-import ErrorAlert from '../components/alerts/ErrorAlert';
+import {invalidInputString, optionalChaining} from '../lib/utils';
+
 import * as S from '../styles';
 
 function Login(props) {
   //Hooks to update text fields
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   const onCompleted = response => {
     auth.setToken(response.token, true);
@@ -32,11 +32,11 @@ function Login(props) {
         {({ data, loading }) => {
           if (loading) return <Loader />;
           //If user is logged in already, redirect to home page. Otherwise show Login Page
-          if (data && data.me) return <Redirect to={'/'} />;
+          if (optionalChaining(data, 'me')) return <Redirect to={'/'} />;
           return (
             <S.Container>
               <LogoIcon />
-              <S.Title>Welcome to Chatspace!</S.Title>
+              <S.Title>Welcome to ChatSpace!</S.Title>
               <S.Instructions>Please login to start</S.Instructions>
               <Mutation
                 mutation={LOGIN_MUTATION}
@@ -45,7 +45,6 @@ function Login(props) {
                 refetchQueries={[{ query: ME_QUERY }]}
                 //We do not want to keep cache of email/password from the User
                 fetchPolicy={FETCH_POLICY.NO_CACHE}
-                onError={e => setError(e.message)}
                 onCompleted={e => onCompleted(e.login)}
               >
                 {(login, { loading: mLoading }) => {
@@ -65,12 +64,11 @@ function Login(props) {
                         placeholder="Ex: joe@gmail.com"
                         onChange={e => setEmail(e.target.value)}
                       />
-                      <TextField
-                        label="Password*"
-                        name="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        type="password"
+                      <PasswordField
+                          label="Password*"
+                          name="password"
+                          value={password}
+                          onChange={e => setPassword(e.target.value)}
                       />
                       <S.FormButton
                         disabled={

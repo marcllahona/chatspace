@@ -10,6 +10,7 @@ import { FETCH_POLICY } from '../lib/constants';
 import auth from '../lib/auth';
 import LogoIcon from '../components/icons/LogoIcon';
 import * as S from '../styles';
+import PasswordField from "../components/inputs/PasswordField";
 
 function Registration(props) {
   const [firstName, setFirstName] = useState('');
@@ -22,10 +23,10 @@ function Registration(props) {
   };
 
   const onCompleted = response => {
-    console.log(response);
     auth.setToken(response.token, true);
-    props.history.push('/');
-    // this.props.showSuccessAlert('Succesfully Logged In!');
+    if (auth.getToken()) {
+      props.history.push('/');
+    }
   };
 
   return (
@@ -79,12 +80,11 @@ function Registration(props) {
                   placeholder="Ex: joe@gmail.com"
                   onChange={e => setEmail(e.target.value)}
                 />
-                <TextField
-                  label="Password*"
-                  name="password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  type="password"
+                <PasswordField
+                    label="Password*"
+                    name="password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                 />
                 <S.FormButton
                   disabled={invalidInputRegistration([
