@@ -24,7 +24,9 @@
     "react-scripts": "3.0.0",
     "styled-components": "^4.2.0",
     "subscriptions-transport-ws": "^0.9.16",
-    "twilio-video": "^1.18.0"
+    "twilio-video": "^1.18.0",
+    "apollo-utilities": "latest",
+    "apollo-link": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
