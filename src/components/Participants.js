@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { PropTypes } from 'prop-types';
-import { connect, createLocalVideoTrack } from 'twilio-video';
+import { connect } from 'twilio-video';
 import ExitAlert from '../components/alerts/ExitAlert';
 import Icon from '../components/icons/Icon';
 import ChatMenu from '../components/menus/ChatMenu';
